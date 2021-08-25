@@ -6,39 +6,41 @@ hadoop fs -ls /my project/facebook/
 
 #HIVE:
 
-CREATE TABLE fb(userid int,age int,dob_day int,dob_year int,dob_month int ,gender  string,tenure  int,friend_count  int,friendships_initiated  int,likes int,likes_received int,mobile_likes int ,
+CREATE TABLE facebook(userid int,age int,dob_day int,dob_year int,dob_month int ,gender  string,tenure  int,friend_count  int,friendships_initiated  int,likes int,likes_received int,mobile_likes int ,
 mobile_likes_received int ,computer_likes int ,computer_likes_received  int) row format delimited fields terminated by ',' stored as textfile location '/my project/';
 
-SELECT * FROM fb LIMIT 10;   # to get the first 10 rows alone
+SELECT * FROM facebook LIMIT 10;   # to get the first 10 rows alone
 
 #QUESTIONS:
 
-1. find total no. of users in this fb data set
+1. find total no. of users in this facebook data set
 
-hive>  SELECT count(userid) AS Total_users FROM fb;
+hive>  SELECT count(*)FROM facebook;
 
-2.find out the no.of fb users above the age 25.
+2.find out the no.of facebook users above the age 25.
 
-hive> SELECT COUNT(userid) AS totalUsers FROM fb WHERE age>25;
+hive> SELECT COUNT(*) FROM facebook WHERE age>25;
 
-3. Male or female who has more number of friends in fb ?
+3. Male or female who has more number of friends in facebook ?
 
-hive> select CONCAT('for the gender category:',' ' ,gender, ' ','the average friend count is:',' ',round(avg(friend_count),2)) from fb GROUP BY gender;
+hive> select avg(friend_count) from facebook where gender = 'male';
+hive> select avg(friend_count) from facebook where gender = 'female';
+hive> select gender,avg(friend_count) from facebook group by gender;
 
+4. How many likes does young people get compared to the older age group of people using facebook ? # young (13 to 25) older(above 25)
 
-4. How many likes does young people get compared to the older age group of people using fb? # young (13 to 25) older(above 25)
+hive> SELECT avg(likes_received) FROM facebook WHERE age>25;
+hive>  SELECT avg(likes_received) FROM facebook WHERE age<=25 AND age>=13;
+hive> SELECT avg(likes_received) FROM facebook WHERE age>35;
 
-hive> SELECT avg(likes_received) AS avg_likes_received FROM fb WHERE age>25;
-hive>  SELECT avg(likes_received) AS avg_likes_received FROM fb WHERE age<=25 AND age>=13;
+5. Find out no. of facebook users for each birthday month.
 
-5. Find out no. of fb users for each birthday month.
+hive> SELECT dob_month, count(userid) AS user_count FROM facebook GROUP BY dob_month;
 
-hive> SELECT dob_month, count(userid) AS user_count FROM fb GROUP BY dob_month;
+6. Do young people use mobile or computer for facebook browsing more frequently?
 
-6. Do young people use mobile or computer for fb browsing more frequently?
+hive> SELECT avg(mobile_likes_recived) from facebook where age<=25;
 
-hive> SELECT age,round(avg(mobile_likes),2) AS mobile_likes, round(avg(computer_likes),2) AS computer_likes FROM fb WHERE age<=25 AND age>=13 group by age;
+7.Do older people use mobile or computer for facebook browsing more frequently?
 
-7.Do older people use mobile or computer for fb browsing more frequently?
-
-hive> SELECT avg(mobile_likes) AS mobile_likes, avg(computer_likes) AS computer_likes FROM fb WHERE age>25;
+hive> SELECT avg(mobile_likes_recived) from facebook where age<=35;
