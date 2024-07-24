@@ -1,24 +1,25 @@
 # Facebook User Data Analysis with Hadoop and Hive
 
-This project demonstrates the analysis of Facebook user data using Hadoop and Hive, showcasing skills in big data processing, SQL querying, and data analysis.
+## Overview
 
-## Project Overview
+This project demonstrates advanced big data processing and analysis skills using Hadoop and Hive to analyze Facebook user data. It showcases the ability to handle large datasets, perform complex SQL queries, and extract meaningful insights from social media user information.
 
-This analysis covers various aspects of Facebook user data, including:
-- Total user count
-- Age demographics
-- Gender-based friend count analysis
-- Likes received by different age groups
-- User distribution across birth months
-- Mobile vs. computer usage patterns
+## Table of Contents
+
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Setup and Installation](#setup-and-installation)
+- [Data Analysis](#data-analysis)
+- [Key Findings](#key-findings)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Future Improvements](#future-improvements)
+- [Contact](#contact)
 
 ## Technologies Used
 
-- Hadoop Distributed File System (HDFS)
-- Apache Hive
+- Apache Hadoop 3.x
+- Apache Hive 3.x
 - HiveQL
+- HDFS (Hadoop Distributed File System)
 
-## Setup and Execution
-
-1. Ensure you have Hadoop and Hive set up in your environment.
-2. Clone this repository:
+## Project Structure
